@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>picturetest</title>
+		<style type="text/css">
+		#div2 {height:170px; width:150px; float:left;
+		    padding:10px;border:1px solid #aaaaaa;}
+		#div1 {height:170px; width:150px; float:left;
+			padding:10px;border:1px solid #aaaaaa;}
+		</style>
+		<script type="text/javascript">
+			function allowDrop(ev)
+			{
+			ev.preventDefault();
+			}
+			
+			function drag(ev)
+			{
+			ev.dataTransfer.setData("Text",ev.target.id);
+			}
+	
+			function drop(ev)
+			{
+			ev.preventDefault();
+			var data=ev.dataTransfer.getData("Text");
+			ev.target.appendChild(document.getElementById(data));
+			}
+		</script>
+	</head>
+	<body>
+		<p>图片可以在矩形中拖动：</p>
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+			<img img id="drag1" src="img/01.png" alt="该目录下没有对应图片" 
+			width="150" height="150" draggable="true" ondragstart="drag(event)"/>
+		</div>
+		<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+	</body>
+</html>
